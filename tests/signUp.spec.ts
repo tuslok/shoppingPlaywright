@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { LandingPage } from "../pages/landingPage";
 
 test.describe("User sign in Generic shop", () => {
   test.beforeEach(async ({ page }) => {
@@ -8,7 +9,9 @@ test.describe("User sign in Generic shop", () => {
   test("User wants to create account using empty login and password textbox", async ({
     page,
   }) => {
-    await page.getByRole("link", { name: "Account" }).click();
+    //await page.getByRole("link", { name: "Account" }).click();
+    const landingPage = new LandingPage(page);
+    await landingPage.accountButton.click();
     // check if url is correct
     await page.getByRole("button", { name: "Register" }).click();
     await expect(page.getByText("Error: Please provide a valid ")).toHaveText(
@@ -19,7 +22,9 @@ test.describe("User sign in Generic shop", () => {
   test("User wants to create account using missing @ in address e-mail", async ({
     page,
   }) => {
-    await page.getByRole("link", { name: "Account" }).click();
+    const landingPage = new LandingPage(page);
+    await landingPage.accountButton.click();
+    //await page.getByRole("link", { name: "Account" }).click();
     await page.locator("#reg_email").fill("wrongaddress");
     await page.getByRole("button", { name: "Register" }).click();
     // add assertion for pop-up
@@ -28,7 +33,9 @@ test.describe("User sign in Generic shop", () => {
   test.skip("User wants to create account using incorrect password data", async ({
     page,
   }) => {
-    await page.getByRole("link", { name: " Account" }).click();
+    const landingPage = new LandingPage(page);
+    await landingPage.accountButton.click();
+    //await page.getByRole("link", { name: " Account" }).click();
     await page.getByLabel("Email address *", { exact: true }).click();
     await page.locator("#reg_password").click();
     await page.getByRole("button", { name: "Register" }).click();
