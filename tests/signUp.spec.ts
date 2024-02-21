@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { LandingPage } from "../pages/landingPage";
-import { MyAccountPage } from "../pages/myAccountPage";
+import { LandingPage } from "../pages/landing.page";
+import { MyAccountPage } from "../pages/myaccount.page";
 
 test.describe("User sign in Generic shop", () => {
   test.beforeEach(async ({ page }) => {
@@ -11,13 +11,13 @@ test.describe("User sign in Generic shop", () => {
     page,
   }) => {
     const landingPage = new LandingPage(page);
-    await landingPage.accountButton.click();
     const myAccountPage = new MyAccountPage(page);
+    const expectedMessage = "Error: Please provide a valid email address.";
+
+    await landingPage.accountButton.click();
     // check if url is correct
     myAccountPage.registerButton.click();
-    await expect(page.getByText("Error: Please provide a valid ")).toHaveText(
-      "Error: Please provide a valid email address."
-    );
+    await expect(myAccountPage.errorMessage).toHaveText(expectedMessage);
   });
 
   test("User wants to create account using missing @ in address e-mail", async ({
@@ -25,23 +25,35 @@ test.describe("User sign in Generic shop", () => {
   }) => {
     const landingPage = new LandingPage(page);
     const myAccountPage = new MyAccountPage(page);
-    // check url
+
     await landingPage.accountButton.click();
-    await myAccountPage.loginTextbox.fill("das");
+    // TO DO CHECK URL
+    await myAccountPage.emailForReg.fill("testuser");
     await myAccountPage.registerButton.click();
-    //await page.getByRole("button", { name: "Register" }).click();
-    // add assertion for pop-up
   });
 
-  test.skip("User wants to create account using incorrect password data", async ({
+  test("User wants to create account using only email address", async ({
     page,
   }) => {
     const landingPage = new LandingPage(page);
+    const myAccountPage = new MyAccountPage(page);
+    const expectedMessage = "Error: Please enter an account password.";
+    // TO DO CHECK URL
     await landingPage.accountButton.click();
-    //await page.getByRole("link", { name: " Account" }).click();
-    await page.getByLabel("Email address *", { exact: true }).click();
-    await page.locator("#reg_password").click();
-    await page.getByRole("button", { name: "Register" }).click();
-    await page.getByText("Error: Please provide a valid").click();
+    await myAccountPage.emailForReg.fill("testuser@test.com");
+    await myAccountPage.registerButton.click();
+    await expect(myAccountPage.errorMessage).toHaveText(expectedMessage);
+  });
+
+  test("User wants to create account using too short password and user corrects the password till register button is available", async ({
+    page,
+  }) => {
+    const landingPage = new LandingPage(page);
+    const myAccountPage = new MyAccountPage(page);
+
+    await landingPage.accountButton.click();
+    await myAccountPage.correctSignIn("user@est.com", "pa55w0rd");
+
+    //await page.getByText("Error: Please provide a valid").click();
   });
 });
