@@ -14,21 +14,21 @@ test.describe("User sign in Generic shop", () => {
     const myAccountPage = new MyAccountPage(page);
     const expectedMessage = "Error: Please provide a valid email address.";
 
-    landingPage.moveToMyAcount();
-    myAccountPage.rememberUser();
-    myAccountPage.signIn("", "");
+    await landingPage.moveToMyAcount();
+    await myAccountPage.rememberUser();
+    await myAccountPage.signIn("", "");
     await expect(myAccountPage.loginError).toHaveText(expectedMessage);
   });
 
-  test.skip("User wants to create account using missing @ in address e-mail", async ({
+  test("User wants to create account using missing @ in address e-mail", async ({
     page,
   }) => {
     const landingPage = new LandingPage(page);
     const myAccountPage = new MyAccountPage(page);
     //const expectedMessage = "Error: Please provide a valid email address.";
 
-    landingPage.moveToMyAcount();
-    myAccountPage.signIn("", "");
+    await landingPage.moveToMyAcount();
+    await myAccountPage.signIn("", "");
   });
 
   test("User wants to create account using only email address", async ({
@@ -37,8 +37,8 @@ test.describe("User sign in Generic shop", () => {
     const landingPage = new LandingPage(page);
     const myAccountPage = new MyAccountPage(page);
     const expectedMessage = "Error: Please enter an account password.";
-    landingPage.moveToMyAcount();
-    myAccountPage.signIn("test@test.com", "");
+    await landingPage.moveToMyAcount();
+    await myAccountPage.signIn("test@test.com", "");
     await expect(myAccountPage.loginError).toHaveText(expectedMessage);
   });
 });

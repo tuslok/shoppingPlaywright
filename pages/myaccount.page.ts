@@ -16,7 +16,7 @@ export class MyAccountPage {
 
   loginButton = this.page.locator("#login");
 
-  loginError = this.page.locator("aria-live='polite'");
+  loginError = this.page.locator(".woocommerce-error");
 
   passwordError = this.page.locator("*.woocommerce-password-strength");
 
@@ -31,7 +31,7 @@ export class MyAccountPage {
 
   rememberUser = async () => {
     await this.rememberMeCheckbox.waitFor();
-    expect(this.rememberMeCheckbox.isChecked).toBeFalsy();
+    expect(!this.rememberMeCheckbox.isChecked);
     await this.rememberMeCheckbox.click();
     await expect(this.rememberMeCheckbox).toBeChecked();
   };
