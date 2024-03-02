@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { LandingPage } from "../pages/landing.page";
-import { MyCartPage } from "../pages/mycart.page";
+import { Product } from "../pages/product.page";
 
 test.describe("User sign in Generic shop", () => {
   test.beforeEach(async ({ page }) => {
@@ -9,10 +9,10 @@ test.describe("User sign in Generic shop", () => {
 
   test("User adds first product, moves to cart", async ({ page }) => {
     const landingPage = new LandingPage(page);
-    const myCart = new MyCartPage(page);
+    const product = new Product(page);
 
-    await landingPage.addProductToBasket(7);
-    await landingPage.addProductToBasket(15);
+    await landingPage.moveToProduct(5);
+    await product.addProductToBasket();
     await landingPage.moveToMyCart();
   });
 });

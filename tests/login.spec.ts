@@ -25,7 +25,6 @@ test.describe("User sign in Generic shop", () => {
   }) => {
     const landingPage = new LandingPage(page);
     const myAccountPage = new MyAccountPage(page);
-    //const expectedMessage = "Error: Please provide a valid email address.";
 
     await landingPage.moveToMyAcount();
     await myAccountPage.signIn("", "");

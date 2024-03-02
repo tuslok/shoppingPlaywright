@@ -18,10 +18,7 @@ test.describe("User sign in Generic shop", () => {
     await expect(myAccountPage.registerButton).toBeDisabled();
     await myAccountPage.passwordForReg.focus();
     await page.keyboard.type("9!f9JK00!_fs00", { delay: 300 });
-    //await myAccountPage.signIn("test@test.com", );
     await expect(myAccountPage.registerButton).toBeEnabled();
-
-    //await page.getByText("Error: Please provide a valid").click();
   });
 
   test("Sucessfull login to shop", async ({ page }) => {
