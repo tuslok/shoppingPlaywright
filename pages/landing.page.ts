@@ -29,6 +29,6 @@ export class LandingPage {
   moveToProduct = async (index: number) => {
     await this.productTitle.last().waitFor();
     await this.productTitle.nth(index).click();
-    const title = this.priceProduct.innerText();
+    //const title = this.priceProduct.innerText();
   };
 }

@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import { deliveryDetails } from "../data/deliveryDetails.spec";
 
 export class CheckoutPage {
   constructor(private page: Page) {}
@@ -16,15 +17,26 @@ export class CheckoutPage {
 
   placeOrderButton = this.page.locator("#place_order");
 
-  fillCheckoutForm = async (deliveryDetails) => {
+  fillCheckoutForm = async (deliveryDetails: {
+    firstName: any;
+    lastName: any;
+    country: any;
+    streetAddress: any;
+    postalCode: any;
+    city: any;
+    phone: any;
+    emailAddress: any;
+  }) => {
     await this.firstName.waitFor();
     await this.firstName.fill(deliveryDetails.firstName);
 
     await this.lastName.waitFor();
     await this.lastName.fill(deliveryDetails.lastName);
 
-    await this.country.waitFor();
-    await this.country.selectOption(deliveryDetails.country);
+    // https://github.com/vuetifyjs/vuetify/issues/12982
+    // adding readonly prop makes the v-select readonly and cannot be edited. A value cannot be selected.
+    // await this.country.waitFor();
+    // await this.country.selectOption(deliveryDetails.country);
 
     await this.streetAddress.waitFor();
     await this.streetAddress.fill(deliveryDetails.streetAddress);
