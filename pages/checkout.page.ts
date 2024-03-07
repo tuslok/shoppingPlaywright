@@ -57,5 +57,6 @@ export class CheckoutPage {
   placeOrder = async () => {
     await this.placeOrderButton.waitFor();
     await this.placeOrderButton.click();
+    //await this.page.waitForURL(/\/lost-password/, { timeout: 3000 });
   };
 }
