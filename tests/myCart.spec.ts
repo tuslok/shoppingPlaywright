@@ -9,7 +9,7 @@ test.describe("User sign in Generic shop", () => {
 
   test("User adds first product, moves to cart", async ({ page }) => {
     const landingPage = new LandingPage(page);
-    const myCart = new MyCartPage(page);
+    //const myCart = new MyCartPage(page);
 
     await landingPage.addProductToBasket(7);
     await landingPage.addProductToBasket(15);

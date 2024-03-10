@@ -9,9 +9,9 @@ export class LastPasswordPage {
   });
 
   retrievePassword = async (email: string): Promise<void> => {
-    await this.restartPasswordButton.waitFor();
-    await this.restartPasswordButton.click();
     await this.userLogin.waitFor();
     await this.userLogin.fill(email);
+    await this.restartPasswordButton.waitFor();
+    await this.restartPasswordButton.click();
   };
 }
