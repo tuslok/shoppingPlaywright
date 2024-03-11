@@ -15,9 +15,7 @@ test.describe("User sign in Generic shop", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
   });
-  test.only("User completes order without created account", async ({
-    page,
-  }) => {
+  test("User completes order without created account", async ({ page }) => {
     const landingPage = new LandingPage(page);
     const myCartPage = new MyCartPage(page);
     const checkoutPage = new CheckoutPage(page);
@@ -31,7 +29,8 @@ test.describe("User sign in Generic shop", () => {
     await checkoutPage.fillCheckoutForm(deliveryDetails);
     await checkoutPage.placeOrder();
     await expect(orderCompletedPage.orderConfirmationMessage).toHaveText(
-      expectedResult
+      expectedResult,
+      { timeout: 5000 }
     );
   });
 });

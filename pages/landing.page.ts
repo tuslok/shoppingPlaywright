@@ -9,6 +9,8 @@ export class LandingPage {
   addProduct = this.page.locator(".add_to_cart_button.button.button");
   priceProduct = this.page.locator("span.price");
 
+  contactButton = this.page.locator(".menu-item-108");
+
   moveToMyAcount = async () => {
     await this.accountButton.waitFor();
     await this.accountButton.click();
@@ -30,5 +32,11 @@ export class LandingPage {
     await this.productTitle.last().waitFor();
     await this.productTitle.nth(index).click();
     //const title = this.priceProduct.innerText();
+  };
+
+  moveToContact = async () => {
+    await this.contactButton.waitFor();
+    await this.contactButton.click();
+    await this.page.waitForURL(/\/test-contact-blablabla/);
   };
 }
