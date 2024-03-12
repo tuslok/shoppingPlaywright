@@ -9,6 +9,8 @@ export class ContactPage {
   messageTextbox = this.page.locator(".your-message");
   submitButton = this.page.locator(".wpcf7-submit");
 
+  errorMessage = this.page.locator(".wpcf7-mail-sent-ng");
+
   fillContactForm = async (contactMessage: {
     name: string;
     email: string;
