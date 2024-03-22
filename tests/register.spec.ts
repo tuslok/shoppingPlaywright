@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 import { LandingPage } from "../pages/landing.page";
 import { MyAccountPage } from "../pages/myaccount.page";
+import { uuid } from "uuidv4";
+import { userLogin } from "../data/userAccess.spec";
 
 test.describe("User sign in Generic shop", () => {
   test.beforeEach(async ({ page }) => {
@@ -26,6 +28,6 @@ test.describe("User sign in Generic shop", () => {
     const myAccountPage = new MyAccountPage(page);
 
     await landingPage.accountButton.click();
-    await myAccountPage.signIn("user@est.com", "pa55w0rd00Yh6");
+    await myAccountPage.signIn(userLogin.login, userLogin.password);
   });
 });

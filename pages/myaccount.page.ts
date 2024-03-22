@@ -1,4 +1,5 @@
 import { Page, expect } from "@playwright/test";
+import { uuid } from "uuidv4";
 
 export class MyAccountPage {
   constructor(private page: Page) {}
