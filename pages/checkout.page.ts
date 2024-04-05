@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
 import { deliveryDetails } from "../data/deliveryDetails.spec";
+import { MethodPayment } from "./methodPayment.page";
 
 export class CheckoutPage {
   constructor(private page: Page) {}

@@ -23,7 +23,7 @@ export class MethodPayment {
     await this.cashOnDelivery.click();
   };
 
-  selectpaymentPayment = async () => {
+  selectPaypalPayment = async () => {
     await this.paypalPayment.waitFor();
     await this.paypalPayment.click();
   };

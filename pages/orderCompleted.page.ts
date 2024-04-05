@@ -6,4 +6,6 @@ export class OrderCompletedPage {
   orderConfirmationMessage = this.page.locator(
     ".woocommerce-thankyou-order-received"
   );
+
+  paypalUnavailableMessage = this.page.locator(".message");
 }
