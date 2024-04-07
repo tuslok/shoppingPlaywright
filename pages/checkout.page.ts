@@ -13,6 +13,7 @@ export class CheckoutPage {
   streetAddressOptional = this.page.locator("#billing_address_2");
   postalCode = this.page.locator("#billing_postcode");
   city = this.page.locator("#billing_city");
+  state = this.page.locator("#billing_state");
   phone = this.page.locator("#billing_phone");
   emailAddress = this.page.locator("#billing_email");
 
@@ -25,6 +26,7 @@ export class CheckoutPage {
     streetAddress: any;
     postalCode: any;
     city: any;
+    state: any;
     phone: any;
     emailAddress: any;
   }) => {
@@ -47,6 +49,9 @@ export class CheckoutPage {
 
     await this.city.waitFor();
     await this.city.fill(deliveryDetails.city);
+
+    await this.state.waitFor();
+    await this.state.selectOption(deliveryDetails.state);
 
     await this.phone.waitFor();
     await this.phone.fill(deliveryDetails.phone);
